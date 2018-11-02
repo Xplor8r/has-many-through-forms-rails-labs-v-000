@@ -9,7 +9,7 @@
     <%= f.text_area :content %>
     <%= f.collection_check_boxes :user_ids, User.all, :id, :username %>
     <%= f.fields_for :user, @post.users.build do |user_fields| %>
-      <%= user_fields.text_field :name %>
+      <%= user_fields.text_field :username %>
     <% end %>
     <%= f.submit %>
   <% end %>
