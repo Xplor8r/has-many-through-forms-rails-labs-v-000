@@ -4,11 +4,11 @@
   <% @post.comments.each do |comment| %>
     <%= comment.content %>
   <% end %>
-  <%= form_for post do |f| %>
+  <%= form_for @post do |f| %>
     <%= f.label "Content" %>
     <%= f.text_area :content %>
     <%= f.collection_check_boxes :user_ids, User.all, :id, :name %>
-    <%= f.fields_for :user, post.user.build do |user_fields| %>
+    <%= f.fields_for :user, @post.user.build do |user_fields| %>
       <%= user_fields.text_field :name %>
     <% end %>
     <%= f.submit %>
