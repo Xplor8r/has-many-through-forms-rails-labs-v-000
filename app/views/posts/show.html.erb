@@ -1,11 +1,11 @@
 <div class=post-content>
-  <h1><%= @post.title %></h1>
+  <h2><%= @post.title %></h2>
   <p><%= @post.content %></p>
-  <h2>Post Categories:</h2>
+  <h3>Post Categories:</h3>
   <% @post.categories.each do |category| %>
     <%= category.name %>
   <% end %>
-  <h2>Post Comments:</h2>
+  <h3>Post Comments:</h3>
     <% if @post.comments != [] %>
       <ul>
         <% @post.comments.each do |comment| %>
@@ -16,11 +16,14 @@
     <% else %>
       <ul><li>None</li></ul>
     <% end %>
+
+  <h3>Add a Comment:</h3>
   <%= form_for @comment do |f| %>
     <%= f.label "Content" %>
     <%= f.text_area :content %>
+
     <%= f.collection_select :user_ids, User.all, :id, :username %>
-    <%= f.fields_for :user, @post.users.build do |user_fields| %>
+    <%= f.fields_for :user, @comment.user do |user_fields| %>
       <%= user_fields.text_field :username %>
     <% end %>
     <%= f.submit %>
